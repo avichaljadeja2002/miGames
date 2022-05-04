@@ -7,58 +7,47 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
   <link rel="stylesheet" href="styles/bootstrap-material-design.min.css">
   <link rel="stylesheet" href="styles/main.css">
-  <title>MI Games</title>
+  <title>My Movie Quotes</title>
 </head>
 
 <body>
-  <div class="bmd-layout-canvas">
-    <div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
-      <header class="bmd-layout-header">
-        <div class="navbar navbar-dark fixed-top bg-faded justify-content-start">
-          <button class="navbar-toggler" type="button" data-toggle="drawer" data-target="#dw-s2" aria-expanded="false">
-            <span class="sr-only">Toggle drawer</span>
-            <i class="material-icons" id="settings">settings</i>
-          </button>
-          <a class="navbar-brand" href="#">&nbsp;&nbsp; MI Games </a>
-          <div class="tabs">
-            <nav class="nav nav-pills nav-fill">
-              <a class="nav-item nav-link active" href="">Join</a>
-              <a class="nav-item nav-link disabled" href="">Teams</a>
-              <a class="nav-item nav-link disabled" href="">My Stats</a>
-            </nav>
-          </div>
-        </div>
-      </header>
-      <div id="dw-s2" class="bmd-layout-drawer bg-faded" aria-expanded="false" aria-hidden="false">
-        <header>
-          <a class="navbar-brand">MI Games</a>
-        </header>
-        <ul class="list-group">
-          <a id="createEvent" class="list-group-item"><i class="material-icons">create</i>Create Event</a>
-          <a id="logout" class="list-group-item"><i class="material-icons">login</i>Logout</a>
-        </ul>
+  <nav class="navbar navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">My Movie Quotes</a>
+  </nav>
+  <div id="loginPage" class="container page-container">
+    <h1 class="text-center">MI GAMES</h1>
+      
+    <button id="rosefireButton" type="button" class="btn">Sign in with Rosefire</button>
+
+    <div class="form-group">
+        <label for="inputEmail" class="bmd-label-floating">Email</label>
+        <input type="email" class="form-control" id="inputEmail">
       </div>
-      <main class="bmd-layout-content">
-        <div id="mainPage" class="container page-container">
-        </div>
-      </main>
-    </div>
+  
+  
+      <div class="form-group">
+        <label for="inputPassword" class="bmd-label-floating">Password</label>
+        <input type="password" class="form-control" id="inputPassword">
+      </div>
+  
+  
+      <button id="createAccountButton" type="button" class="btn btn-primary btn-outline">Create Account</button>
+      <button id="logInButton" type="button" class="btn btn-primary btn-outline">Log in to an existing account</button>
   </div>
+
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/popper.js"></script>
+  <script src="scripts/bootstrap-material-design.js"></script>
+  <script>$("body").bootstrapMaterialDesign();</script>
+  <script src="/__/firebase/7.18.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.18.0/firebase-analytics.js"></script>
+  <script src="/__/firebase/7.18.0/firebase-firestore.js"></script>
+  <script src="/__/firebase/7.18.0/firebase-auth.js"></script>
+  <script src="/__/firebase/init.js"></script>
+  <script src="scripts/rosefire.min.js"></script>
+  
+  <script src="scripts/main.js"></script>
 </body>
 
-
-<script src="scripts/jquery.min.js"></script>
-<script src="scripts/popper.js"></script>
-<script src="scripts/bootstrap-material-design.js"></script>
-<script>
-  $("body").bootstrapMaterialDesign();
-</script>
-<script src="/__/firebase/7.18.0/firebase-app.js"></script>
-<script src="/__/firebase/7.18.0/firebase-analytics.js"></script>
-<script src="/__/firebase/7.18.0/firebase-firestore.js"></script>
-<script src="/__/firebase/7.18.0/firebase-auth.js"></script>
-<script src="/__/firebase/init.js"></script>
-<script src="scripts/main.js"></script>
-</body>
 
 </html>
