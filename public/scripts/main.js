@@ -18,6 +18,8 @@ rhit.functionName = function () {
 	/** function body */
 };
 
+rhit.fbAuthManager = null;
+
 rhit.LoginPageController = class {
 	constructor() {
 		rhit.fbAuthManager.classicSignIn();
@@ -63,7 +65,7 @@ rhit.FbAuthManager = class {
 			this._user = user;
 			console.log(this._user);
 			db.collection("users").doc(_user).set({
-				createdEvents: [];
+				createdEvents: []
 			})
 			changeListener();
 		});
@@ -118,7 +120,7 @@ rhit.FbAuthManager = class {
 
 rhit.checkForRedirects = function () {
 	if (document.querySelector("#loginPage") && rhit.fbAuthManager.isSignedIn) {
-		window.location.href = "/mainPage.html";
+		window.location.href = "/join.html";
 	}
 	if (!document.querySelector("#loginPage") && !rhit.fbAuthManager.isSignedIn) {
 		window.location.href = "/";
