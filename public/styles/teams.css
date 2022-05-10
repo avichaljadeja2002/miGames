@@ -5,3 +5,17 @@
     background-color: #F0F0F0;
     width: 50%;
 }
+.card{
+    margin-bottom: 1rem;
+}
+#createdEventsHeader{
+    margin-top: 2rem;
+}
+
+.w-49{
+width: 49%;
+}
+
+.h-150{
+    height: 150px !important;
+}
