@@ -62,7 +62,9 @@ rhit.FbAuthManager = class {
 		firebase.auth().onAuthStateChanged((user) => {
 			this._user = user;
 			console.log(this._user);
-			// sessionStorage.setItem(rhit.sftorage.USER, this._user);
+			db.collection("users").doc(_user).set({
+				createdEvents: [];
+			})
 			changeListener();
 		});
 	}
