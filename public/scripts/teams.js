@@ -5,9 +5,6 @@
  * @author 
  * Charles Yang and Avichal Jadeja
  */
- import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
- import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
-
 
 var rhit = rhit || {};
 rhit.variableName = "";
@@ -68,7 +65,7 @@ rhit.Teams = class {
                 console.log("Document successfully written!");
             })
             .catch((error) => {
-                alert("Error creating event. Please try again later")
+                // alert("Error creating event. Please try again later")
             });
 
             usersRef.set({
@@ -76,11 +73,11 @@ rhit.Teams = class {
             }).then(() => {
                 console.log("Document successfully written!");
                 $('#createEventModal').modal('hide');    
-                location.reload();
             })
             .catch((error) => {
-                alert("Error creating event. Please try again later")
+                // alert("Error creating event. Please try again later")
             });
+            // window.location.reload()
         })
     }
 
