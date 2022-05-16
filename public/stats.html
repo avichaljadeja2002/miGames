@@ -20,14 +20,7 @@
             <span class="sr-only">Toggle drawer</span>
             <i class="material-icons" id="settings">settings</i>
           </button>
-          <a class="navbar-brand" href="#">&nbsp;&nbsp; MI Games </a>
-          <div class="tabs">
-            <nav class="nav nav-pills nav-fill">
-              <a class="nav-item nav-link disabled" href="">Join</a>
-              <a class="nav-item nav-link disabled" href="teams.html">Teams</a>
-              <a class="nav-item nav-link active" href="myStats.html">My Stats</a>
-            </nav>
-          </div>
+          <a class="navbar-brand" href="/join.html">&nbsp;&nbsp; MI Games </a>
         </div>
       </header>
       <div id="dw-s2" class="bmd-layout-drawer bg-faded" aria-expanded="false" aria-hidden="false">
@@ -41,14 +34,35 @@
       </div>
       <main class="bmd-layout-content">
         <div id="mainPage" class="container page-container">
-          <div class="eventList">
-            <h4>Your teams</h4>
-            <div id="eventListContainer">
+          <div id="eventHeading"></div>
+            <div id="eventDetails">
             </div>
+            <div id="addStats"></div>
+        </div>
+    </div>
+    </main>
+    <div class="modal" id="addStatModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add a result</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <select id="team1" class="w-150"></select>
+            <h6>beat</h6>
+            <select id="team2" class="w-150"></select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="save">Save changes</button>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </div>    
+  </div>
   </div>
 </body>
 
@@ -64,7 +78,7 @@
 <script src="/__/firebase/7.18.0/firebase-firestore.js"></script>
 <script src="/__/firebase/7.18.0/firebase-auth.js"></script>
 <script src="/__/firebase/init.js"></script>
-<script src="scripts/myStats.js"></script>
+<script src="scripts/stats.js"></script>
 </body>
 
 </html>

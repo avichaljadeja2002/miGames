@@ -59,7 +59,8 @@ rhit.Teams = class {
                 location: location,
                 email: email,
                 description: description,
-                icon: icon
+                icon: icon,
+                createdBy: uid
             })
             .then(() => {
                 console.log("Document successfully written!");

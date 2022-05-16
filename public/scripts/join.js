@@ -64,14 +64,13 @@ rhit.Join = class {
                 email: selectedEvent.email || {},
                 description: selectedEvent.description || {},
                 icon: selectedEvent.icon || {},
-                registered: registered
+                registered: registered,
             }).then(() => {
                 console.log("Document successfully written!");
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
-            console.log(selectedEvent.name);
         db.collection("users").doc(uid).set({ 
             createdEvents : createdEvents,
             registeredEvents : registerTemp
@@ -97,7 +96,6 @@ rhit.Join = class {
     getRegisteredEvents() {
         usersRef.get().then((doc) => {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
                 registeredEvents.push(doc.data().registeredEvents);
                 createdEvents.push(doc.data().createdEvents);
             } else {
