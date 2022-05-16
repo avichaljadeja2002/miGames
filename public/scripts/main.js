@@ -64,7 +64,7 @@ rhit.FbAuthManager = class {
 		firebase.auth().onAuthStateChanged((user) => {
 			this._user = user;
 			console.log(this._user);
-			localStorage.setItem("uid", this._user.uid);
+			// localStorage.setItem("uid", this._user.uid);
 			// db.collection("users").doc(_user).set({
 			// 	createdEvents: []
 			// })
@@ -129,6 +129,7 @@ rhit.checkForRedirects = function () {
 };
 
 rhit.SideNavController = class {
+	
 	constructor() {
 		const menuShowJoinPage = document.querySelector("#menuShowJoinPage");
 		if (menuShowJoinPage) {
@@ -144,6 +145,8 @@ rhit.SideNavController = class {
 		}
 		const menuSignOutItem = document.querySelector("#logout");
 		if (menuSignOutItem) {
+			console.log(menuSignOutItem);
+
 			menuSignOutItem.addEventListener("click", (event) => {
 				rhit.fbAuthManager.signOut();
 			});
