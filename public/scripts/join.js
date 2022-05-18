@@ -50,12 +50,12 @@ rhit.Join = class {
         registered.push(uid);
         db.collection("events").doc(id).set({
                 name: selectedEvent.name,
-                date: selectedEvent.date || {},
-                time: selectedEvent.time || {},
-                location: selectedEvent.location || {},
-                email: selectedEvent.email || {},
-                description: selectedEvent.description || {},
-                icon: selectedEvent.icon || {},
+                date: selectedEvent.date,
+                time: selectedEvent.time,
+                location: selectedEvent.location,
+                email: selectedEvent.email,
+                description: selectedEvent.description,
+                icon: selectedEvent.icon,
                 registered: registered,
             }).then(() => {
                 console.log("Document successfully written!");
@@ -64,8 +64,8 @@ rhit.Join = class {
                 console.error("Error writing document: ", error);
             });
         db.collection("users").doc(uid).set({ 
-            createdEvents : createdEvents || [],
-            registeredEvents : registerTemp
+            // createdEvents : createdEvents || [],
+            // registeredEvents : registerTemp
             }).then(() => {
                 console.log("Document successfully written!");
             })
@@ -78,8 +78,8 @@ rhit.Join = class {
                 querySnapshot.forEach((doc) => {
                     // doc.data() is never undefined for query doc snapshots
                     eventList.push(doc.data());
+                    this.updateEvents()
                 });
-                this.updateEvents()
             })
             .catch((error) => {
                 console.log("Error getting documents: ", error);

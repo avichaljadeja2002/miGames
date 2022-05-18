@@ -12,8 +12,8 @@ var rhit = rhit || {};
 
 /** globals */
 rhit.variableName = "";
-const db = firebase.firestore();
-const usersRef = db.collection("users")
+const firebaseData = firebase.firestore();
+const usersReference = firebaseData.collection("users")
 
 /** function and class syntax examples */
 rhit.functionName = function () {
@@ -52,7 +52,7 @@ rhit.FbAuthManager = class {
 				console.log("Create user error", errorCode, errorMessage);
 				return;
 			});
-			usersRef.doc(inputEmailEl.value).set({
+			usersReference.doc(inputEmailEl.value).set({
 				createdEvents: [],
 				currentTeams: [],
 				emailId: inputEmailEl.value,
