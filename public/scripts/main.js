@@ -12,6 +12,8 @@ var rhit = rhit || {};
 
 /** globals */
 rhit.variableName = "";
+const db = firebase.firestore();
+const usersRef = db.collection("users")
 
 /** function and class syntax examples */
 rhit.functionName = function () {
@@ -43,11 +45,21 @@ rhit.FbAuthManager = class {
 
 		document.querySelector("#createAccountButton").onclick = (event) => {
 			console.log(`Create account for email: ${inputEmailEl.value}  password: ${inputPasswordEl.value}`);
+
 			firebase.auth().createUserWithEmailAndPassword(inputEmailEl.value, inputPasswordEl.value).catch(function (error) {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				console.log("Create user error", errorCode, errorMessage);
+				return;
 			});
+			usersRef.doc(inputEmailEl.value).set({
+				createdEvents: [],
+				currentTeams: [],
+				emailId: inputEmailEl.value,
+				userName: inputEmailEl.value
+			})
+			localStorage.setItem("uid", inputEmailEl.value);
+			console.log("written to users doc")
 		};
 
 		document.querySelector("#logInButton").onclick = (event) => {
@@ -56,7 +68,9 @@ rhit.FbAuthManager = class {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				console.log("Log in existing user error", errorCode, errorMessage);
+				return;
 			});
+			localStorage.setItem("uid", inputEmailEl.value);
 		};
 	}
 
@@ -128,8 +142,7 @@ rhit.checkForRedirects = function () {
 	}
 };
 
-rhit.SideNavController = class {
-	
+rhit.SideNavController = class {	
 	constructor() {
 		const menuShowJoinPage = document.querySelector("#menuShowJoinPage");
 		if (menuShowJoinPage) {
@@ -146,7 +159,6 @@ rhit.SideNavController = class {
 		const menuSignOutItem = document.querySelector("#logout");
 		if (menuSignOutItem) {
 			console.log(menuSignOutItem);
-
 			menuSignOutItem.addEventListener("click", (event) => {
 				rhit.fbAuthManager.signOut();
 			});

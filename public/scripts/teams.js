@@ -12,7 +12,6 @@ rhit.variableName = "";
 const uid = localStorage.getItem("uid")
 var teamsList = null;
 var createdEvents = null;
-console.log(uid);
 
 // Initialize Firebase
 const db = firebase.firestore();
@@ -38,6 +37,7 @@ function createCard(teamName) {
 
 rhit.Teams = class {
     constructor() {
+        console.log("HERE");
         this.getTeams();
         document.getElementById("submit").addEventListener("click", function() {
             console.log("CREATING EVENT!");
@@ -109,7 +109,6 @@ rhit.Teams = class {
 				// window.location.href = `/moviequote.html?id=${mq.id}`;
 			}
 			newList.appendChild(newCard);
-            console.log(newList);
             const oldList = document.querySelector("#teamListContainer");
             oldList.removeAttribute("id");
             // oldList.hidden = true;
@@ -127,7 +126,6 @@ rhit.Teams = class {
 				// window.location.href = `/moviequote.html?id=${mq.id}`;
 			}
 			newList.appendChild(newCard);
-            console.log(newList);
             const oldList = document.querySelector("#createdEvents");
             // oldList.removeAttribute("id");
             // oldList.hidden = true;

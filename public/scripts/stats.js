@@ -53,6 +53,7 @@ function createCard(i) {
 function updateStats() {
     const newList = htmlToElement(`<div id="eventDetails"></div>`);
     for (var i = 0; i < resultsList.length; i++) {
+        if(resultsList[i] == 'undefined') continue;
         const mq = resultsList[i]
         const newCard = createCard(resultsList[i]);
         newList.appendChild(newCard);
@@ -65,7 +66,7 @@ function updateStats() {
 }
 
 function addResultButton() {
-    if (uid === createdBy) {
+    if (uid === createdBy || createdBy == "undefined") {
         const oldList = document.querySelector("#addStats");
         oldList.appendChild(htmlToElement(`   
         <button type="button" id="statsAdd" class="btn btn-primary" >Add result</button>`))
@@ -77,19 +78,19 @@ function addResultButton() {
         document.getElementById("save").onclick = (event) => {
             const temp = document.getElementById("team1").value + " beat " + document.getElementById("team2").value
             resultsList.push(temp);
-            console.log(resultsList)
             eventRef.update({
                 "results": resultsList
             }).then(() => {
                 console.log("Document successfully updated!");
                 $('#addStatModal').modal('hide');
+                localStorage.setItem("results", resultsList)
+                window.location.reload();
             });
         }
     }
 }
 
 function populateModal(team) {
-    console.log(team)
     for (var i = 0; i < registered.length; i++) {
         var optn = registered[i];
         var el = document.createElement("option");

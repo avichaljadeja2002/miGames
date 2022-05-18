@@ -1,16 +1,8 @@
-/**
- * @fileoverview
- * Provides the JavaScript interactions for teams page
- *
- * @author 
- * Charles Yang and Avichal Jadeja
- */
-
 var rhit = rhit || {};
 rhit.variableName = "";
 
-const uid = localStorage.getItem("uid")
-
+// const uid = localStorage.getItem("uid")
+uid = "abc@gmail.com"
 var eventList = []
 var registeredEvents = []
 
@@ -72,7 +64,7 @@ rhit.Join = class {
                 console.error("Error writing document: ", error);
             });
         db.collection("users").doc(uid).set({ 
-            createdEvents : createdEvents,
+            createdEvents : createdEvents || [],
             registeredEvents : registerTemp
             }).then(() => {
                 console.log("Document successfully written!");
