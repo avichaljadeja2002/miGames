@@ -157,7 +157,6 @@ rhit.SideNavController = class {
 		}
 		const menuSignOutItem = document.querySelector("#logout");
 		if (menuSignOutItem) {
-			console.log(menuSignOutItem);
 			menuSignOutItem.addEventListener("click", (event) => {
 				rhit.fbAuthManager.signOut();
 			});

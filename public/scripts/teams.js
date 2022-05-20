@@ -48,7 +48,6 @@ rhit.Teams = class {
             const email = document.getElementById("email").value;
             const description = document.getElementById("description").value;
             const icon = document.getElementById("icon").value
-            console.log(createdEvents);
             createdEvents.push(name);
         
             events.doc(name).set({
@@ -111,13 +110,15 @@ rhit.Teams = class {
 			}
 			newList.appendChild(newCard);
             const oldList = document.querySelector("#teamListContainer");
-            oldList.removeAttribute("id");
+            // oldList.removeAttribute("id");
             // oldList.hidden = true;
             oldList.parentElement.appendChild(newList);
             oldList.parentElement.children[0].hidden = false
 		}
     }
     updateTeams(){
+        console.log("HERE");
+        console.log(createdEvents)
         const newList = htmlToElement(`<div id="createdEvents"></div>`);
         for (let i = 0; i < createdEvents.length; i++) {
 			const mq = createdEvents[i]

@@ -57,6 +57,7 @@ rhit.Join = class {
                 description: selectedEvent.description,
                 icon: selectedEvent.icon,
                 registered: registered,
+                createdBy: selectedEvent.createdBy
             }).then(() => {
                 console.log("Document successfully written!");
             })
@@ -79,8 +80,8 @@ rhit.Join = class {
                 querySnapshot.forEach((doc) => {
                     // doc.data() is never undefined for query doc snapshots
                     eventList.push(doc.data());
-                    this.updateEvents()
                 });
+                this.updateEvents()
             })
             .catch((error) => {
                 console.log("Error getting documents: ", error);
@@ -102,6 +103,7 @@ rhit.Join = class {
 
     }
     updateEvents() {
+        console.log(eventList);
         const newList = htmlToElement(`<div id="eventListContainer"></div>`);
         for (var i = 0; i < eventList.length; i++) {
             createCard(eventList[i])
@@ -113,7 +115,7 @@ rhit.Join = class {
             }
             newList.appendChild(newCard);
             const oldList = document.querySelector("#eventListContainer");
-            oldList.removeAttribute("id");
+            // oldList.removeAttribute("id");
             // oldList.hidden = true;
             oldList.parentElement.appendChild(newList);
             oldList.parentElement.children[0].hidden = false
