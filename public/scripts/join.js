@@ -1,10 +1,9 @@
 var rhit = rhit || {};
 rhit.variableName = "";
 
-// const uid = localStorage.getItem("uid")
-uid = "abc@gmail.com"
+const uid = localStorage.getItem("uid")
 var eventList = []
-var registeredEvents = []
+var registeredTeams = []
 
 var createdEvents = []
 
@@ -13,6 +12,8 @@ var selectedEvent = null;
 const db = firebase.firestore();
 const eventRef = db.collection("events")
 const usersRef = db.collection("users").doc(uid)
+
+console.log(uid);
 
 function htmlToElement(html) {
     var template = document.createElement('template');
@@ -36,7 +37,7 @@ function createCard(data) {
 rhit.Join = class {
     constructor() {
         this.getEvents();
-        this.getRegisteredEvents();
+        this.getRegisteredTeams();
         document.getElementById("submit").onclick = (event) => {
             console.log("joining team")
             this.joinTeam()
@@ -45,8 +46,7 @@ rhit.Join = class {
     joinTeam() {
         const id = selectedEvent.name;
         const registered = selectedEvent.registered || [];
-        const registerTemp = registeredEvents || [];
-        registerTemp.push(selectedEvent.id);
+        registeredTeams.push(id);
         registered.push(uid);
         db.collection("events").doc(id).set({
                 name: selectedEvent.name,
@@ -63,11 +63,12 @@ rhit.Join = class {
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
-        db.collection("users").doc(uid).set({ 
-            // createdEvents : createdEvents || [],
-            // registeredEvents : registerTemp
+        db.collection("users").doc(uid).set({
+                createdEvents: createdEvents || [],
+                registeredTeams: registeredTeams
             }).then(() => {
                 console.log("Document successfully written!");
+                window.location.reload();
             })
             .catch((error) => {
                 console.error("Error writing document: ", error);
@@ -85,11 +86,12 @@ rhit.Join = class {
                 console.log("Error getting documents: ", error);
             });
     }
-    getRegisteredEvents() {
+    getRegisteredTeams() {
         usersRef.get().then((doc) => {
             if (doc.exists) {
-                registeredEvents.push(doc.data().registeredEvents);
-                createdEvents.push(doc.data().createdEvents);
+                registeredTeams = doc.data().registeredTeams
+                createdEvents = doc.data().createdEvents
+                console.log(registeredTeams);
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");

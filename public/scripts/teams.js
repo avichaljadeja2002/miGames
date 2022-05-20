@@ -9,9 +9,9 @@
 var rhit = rhit || {};
 rhit.variableName = "";
 
-const uid = localStorage.getItem("uid")
-var teamsList = null;
-var createdEvents = null;
+const uid = localStorage.getItem("uid") || "jadejaan"
+var teamsList = [];
+var createdEvents = [];
 
 // Initialize Firebase
 const db = firebase.firestore();
@@ -37,7 +37,6 @@ function createCard(teamName) {
 
 rhit.Teams = class {
     constructor() {
-        console.log("HERE");
         this.getTeams();
         document.getElementById("submit").addEventListener("click", function() {
             console.log("CREATING EVENT!");
@@ -49,7 +48,7 @@ rhit.Teams = class {
             const email = document.getElementById("email").value;
             const description = document.getElementById("description").value;
             const icon = document.getElementById("icon").value
-
+            console.log(createdEvents);
             createdEvents.push(name);
         
             events.doc(name).set({
@@ -64,29 +63,31 @@ rhit.Teams = class {
             })
             .then(() => {
                 console.log("Document successfully written!");
+                usersRef.set({
+                    "createdEvents": createdEvents,
+                    "registeredTeams" : teamsList
+                }).then(() => {
+                    console.log("Document successfully written!");
+                    $('#createEventModal').modal('hide');    
+                    window.location.reload()
+                })
+                .catch((error) => {
+                    // alert("Error creating event. Please try again later")
+                });
+                // window.location.reload()
             })
             .catch((error) => {
                 // alert("Error creating event. Please try again later")
             });
 
-            usersRef.set({
-                createdEvents: createdEvents
-            }).then(() => {
-                console.log("Document successfully written!");
-                $('#createEventModal').modal('hide');    
-            })
-            .catch((error) => {
-                // alert("Error creating event. Please try again later")
-            });
-            // window.location.reload()
+            
         })
     }
 
     getTeams() {
         usersRef.get().then((doc) => {
             if (doc.exists) {
-                console.log(doc.data());
-                teamsList = doc.data().currentTeams || [];
+                teamsList = doc.data().registeredTeams || [];
                 createdEvents = doc.data().createdEvents || [];
                 this.updateList();
                 this.updateTeams()
@@ -121,10 +122,6 @@ rhit.Teams = class {
         for (let i = 0; i < createdEvents.length; i++) {
 			const mq = createdEvents[i]
 			const newCard = createCard(mq);
-			newCard.onclick = (event) => {
-				// rhit.storage.setMovieQuoteId(mq.id);
-				// window.location.href = `/moviequote.html?id=${mq.id}`;
-			}
 			newList.appendChild(newCard);
             const oldList = document.querySelector("#createdEvents");
             // oldList.removeAttribute("id");

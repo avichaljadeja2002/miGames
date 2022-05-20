@@ -54,7 +54,7 @@ rhit.FbAuthManager = class {
 			});
 			usersReference.doc(inputEmailEl.value).set({
 				createdEvents: [],
-				currentTeams: [],
+				registeredTeams: [],
 				emailId: inputEmailEl.value,
 				userName: inputEmailEl.value
 			})
@@ -77,7 +77,6 @@ rhit.FbAuthManager = class {
 	beginListening(changeListener) {
 		firebase.auth().onAuthStateChanged((user) => {
 			this._user = user;
-			console.log(this._user);
 			// localStorage.setItem("uid", this._user.uid);
 			// db.collection("users").doc(_user).set({
 			// 	createdEvents: []
