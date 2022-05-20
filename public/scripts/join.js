@@ -12,9 +12,7 @@ var selectedEvent = null;
 const db = firebase.firestore();
 const eventRef = db.collection("events")
 const usersRef = db.collection("users").doc(uid)
-
-console.log(uid);
-
+ 
 function htmlToElement(html) {
     var template = document.createElement('template');
     html = html.trim();
@@ -24,8 +22,8 @@ function htmlToElement(html) {
 
 function createCard(data) {
     return htmlToElement(`
-    <div class="card w-100" style="width: 18rem;">
-        <img class="card-img-top" style="height: 20rem;" src="/images/upload.jpg">
+    <div class="card" style="width: 40rem;">
+        <img class="card-img-top" style="height: 20rem;" src="${data.icon}">
         <div class="card-body">
         <h5 class="card-title">${data.name}</h5>
         <p class="card-text">${data.description}</p>
