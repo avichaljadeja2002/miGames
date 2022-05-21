@@ -23,13 +23,22 @@ function htmlToElement(html) {
 function createCard(data) {
     return htmlToElement(`
     <div class="card" style="width: 40rem;">
-        <img class="card-img-top" style="height: 20rem;" src="${data.icon}">
+        ${createIcon(data.icon)}
         <div class="card-body">
         <h5 class="card-title">${data.name}</h5>
         <p class="card-text">${data.description}</p>
         </div>
     </div>
     `)
+}
+
+function createIcon(icon){
+    console.log(icon);
+    if(icon === '' || icon.length === 0 || !icon || icon.trim().length ===  0) return '<span></span>';
+    if(icon || icon.length > 0){
+        return(`<img class="card-img-top" style="height: 20rem;" src="${icon}">`)
+    }
+    return ''
 }
 
 rhit.Join = class {
