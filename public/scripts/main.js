@@ -161,6 +161,13 @@ rhit.SideNavController = class {
 				rhit.fbAuthManager.signOut();
 			});
 		}
+		const createEvent = document.querySelector("#createEvent");
+		if (createEvent) {
+			createEvent.addEventListener("click", (event) => {
+				console.log("HERE");
+				$('#createEventModal').modal('toggle');  
+			});
+		}
 	}
 }
 

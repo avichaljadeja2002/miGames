@@ -42,11 +42,10 @@ rhit.Join = class {
         }
     }
     joinTeam() {
-        const id = selectedEvent.name;
         const registered = selectedEvent.registered || [];
-        registeredTeams.push(id);
+        registeredTeams.push(selectedEvent.name);
         registered.push(uid);
-        db.collection("events").doc(id).set({
+        db.collection("events").doc(selectedEvent.name).set({
                 name: selectedEvent.name,
                 date: selectedEvent.date,
                 time: selectedEvent.time,
